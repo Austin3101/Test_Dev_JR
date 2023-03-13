@@ -1,0 +1,55 @@
+﻿@model Test_Dev_JR.Models.Tarea
+
+@{
+    ViewData["Title"] = "Edit2";
+}
+
+<h1>Completar tarea</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit2">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label">Título</label>
+                <input asp-for="Titulo" class="form-control" readonly />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label">Descripción</label>
+                <input asp-for="Descripcion" class="form-control" readonly />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaTareaRegistro" class="control-label">Fecha de Registro</label>
+                <input asp-for="FechaTareaRegistro" class="form-control" readonly />
+                <span asp-validation-for="FechaTareaRegistro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check" >
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" asp-for="TareaCompletada" checked required />¿Tarea completada?
+                    <span asp-validation-for="TareaCompletada" class="text-danger"></span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FechaTareaCompletada" class="control-label">Fecha de culminación</label>
+                <input asp-for="FechaTareaCompletada" class="form-control" required />
+                <span asp-validation-for="FechaTareaCompletada" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Completar tarea" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

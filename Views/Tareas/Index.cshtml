@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Test_Dev_JR.Models.Tarea>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de tareas</h1>
+
+
+<div align="center">
+<form asp-controller="Tareas" asp-action="Search">
+    <p>
+        Buscar: <input type="text" name="buscar" class="form-text" />
+        <input  type="submit" value="Buscar" class="btn btn-dark"/>
+    </p>
+</form>
+</div>
+
+<div>
+<form asp-controller="Tareas" asp-action="HomeworksComplete">
+    <p>
+        <a asp-action="HomeworksComplete" class="btn btn-secondary">Lista de tareas completadas</a>
+    </p>
+</form>
+<form asp-controller="Tareas" asp-action="HomeworksIncomplete">
+    <p>
+            <a asp-action="HomeworksIncomplete" class="btn btn-secondary">Lista de tareas pendientes</a>
+    </p>
+</form>
+</div>
+<p>
+    <a asp-action="Create" class="btn btn-success">Crear nueva tarea</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Título
+            </th>
+            <th>
+                Descriptión
+            </th>
+            <th>
+                Fecha de Registro
+            </th>
+            <th>
+                ¿Tarea completada?
+            </th>
+            <th>
+                Fecha de culminación
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaTareaRegistro)
+            </td>
+                <td align="center">
+                @Html.DisplayFor(modelItem => item.TareaCompletada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaTareaCompletada)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                    <a asp-action="Edit2" asp-route-id="@item.Id" class="btn btn-secondary">Completar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
